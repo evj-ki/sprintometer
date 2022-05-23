@@ -1,0 +1,19 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  labels:
+    app: architometer
+  name: architometer
+spec:
+  lookupPolicy:
+    local: false
+  tags:
+    - annotations:
+        openshift.io/generated-by: OpenShiftWebConsole
+        openshift.io/imported-from: 'architometer:latest'
+      from:
+        kind: DockerImage
+        name: imarchiteq/architometer
+      generation: 1
+      importPolicy: {}
+      name: latest

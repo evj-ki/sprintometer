@@ -1,0 +1,68 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  labels:
+    app: architometer
+    deploymentconfig: postgresql-architometer
+  name: postgresql-architometer
+spec:
+  replicas: 1
+  selector:
+    app: architometer
+    deploymentconfig: postgresql-architometer
+  strategy:
+    activeDeadlineSeconds: 21600
+    recreateParams:
+      timeoutSeconds: 600
+    resources: {}
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: architometer
+        deploymentconfig: postgresql-architometer
+    spec:
+      containers:
+        - env:
+            - name: POSTGRES_USERNAME
+              value: {{ .Values.postgres.username }}
+            - name: POSTGRES_PASSWORD
+              value: {{ .Values.postgres.password }}
+            - name: POSTGRES_DB
+              value: {{ .Values.architometer.database.schema }}
+            - name: PGDATA
+              value: /var/lib/postgresql/store_data/data
+            - name: LD_PRELOAD
+              value: libnss_wrapper.so
+          image: {{ .Values.postgres.image.name }}:{{ .Values.postgres.image.version }}
+          imagePullPolicy: IfNotPresent
+          name: postgresql
+          ports:
+            - containerPort: 5432
+              protocol: TCP
+          resources:
+            limits:
+              cpu: '1'
+              memory: 1G
+            requests:
+              cpu: '1'
+              memory: 1G
+          securityContext:
+            capabilities: {}
+            privileged: false
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/store_data
+              name: postgresql-architometer-data
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - name: postgresql-architometer-data
+          persistentVolumeClaim:
+            claimName: postgresql-architometer-data
+  test: false
+  triggers:
+    - type: ConfigChange

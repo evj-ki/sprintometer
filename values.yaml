@@ -1,0 +1,17 @@
+postgres:
+  image:
+    name: postgres
+    version: latest
+  username: postgres
+  password:
+
+sonar:
+  schema: https
+  endpoint: codequality.sbb.ch
+  port:
+  project:
+  token:
+
+architometer:
+  database:
+    schema: architometer
