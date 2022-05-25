@@ -6,3 +6,5 @@ entries:
     name: sprintometer
     type: application
     version: 1.0.0
+    urls:
+    - https://evj-ki.github.io/sprintometer
