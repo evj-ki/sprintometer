@@ -4,6 +4,3 @@ name: sprintometer
 type: application
 version: 0.1.0
 
-maintainers:
-  - name: Evgeni Kirzner
-    email: hi@architeq.ch
