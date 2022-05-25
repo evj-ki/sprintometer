@@ -1,4 +1,4 @@
-repositoryID: # The ID of the Artifact Hub repository where the packages will be published to (optional, but it enables verified publisher)
+repositoryID: 1770bc70-3caa-460f-b393-044c84a21f6a
 owners: # (optional, used to claim repository ownership)
   - name: Evgeni
     email: hi@architeq.ch
