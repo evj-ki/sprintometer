@@ -7,4 +7,4 @@ entries:
     type: application
     version: 1.0.0
     urls:
-    - helm/helm.tar.gz
+    - helm/helm.tgz
