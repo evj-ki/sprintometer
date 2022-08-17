@@ -1,0 +1,14 @@
+{{- if .Values.postgres.volume.mounted }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-pvc
+  labels:
+    {{- include "postgres.appLabels" . | nindent 4 }}
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.postgres.volume.claim }}
+{{- end }}

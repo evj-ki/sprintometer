@@ -7,8 +7,28 @@ resources:
     cpu: "500m"
 
 replicaCount: 1
-
 image:
   tag: 1.7.2
   name: imarchiteq/architometer
+
+postgres:
+  image:
+    name: postgres
+    tag: 13.6
+  resources:
+    limits:
+      memory: "1Gi"
+      cpu: "1000m"
+    requests:
+      memory: "128Mi"
+      cpu: "500m"
+  volume:
+    mounted: false
+    claim: 1Gi
+  replicaCount: 1
+  env:
+    postgres:
+      db: sprintometer
+      user: sprintometer
+      password: sprintometer
 
