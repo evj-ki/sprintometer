@@ -1,15 +1,16 @@
-resources:
-  limits:
-    memory: "1Gi"
-    cpu: "1000m"
-  requests:
-    memory: "128Mi"
-    cpu: "500m"
+sprintometer:
+  resources:
+    limits:
+      memory: "1Gi"
+      cpu: "1000m"
+    requests:
+      memory: "128Mi"
+      cpu: "500m"
 
-replicaCount: 1
-image:
-  tag: 1.7.2
-  name: imarchiteq/architometer
+  replicaCount: 1
+  image:
+    tag: 1.7.2
+    name: imarchiteq/architometer
 
 postgres:
   image:
