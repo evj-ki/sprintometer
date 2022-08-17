@@ -11,7 +11,7 @@ helm dependencies update
 
 # helm install 
 ``
-helm install sprintometer . --namespace=sprintometer
+helm install sprintometer . --create-namespace --namespace=sprintometer 
 ``
 
 # create yaml for deployment 

@@ -24,12 +24,12 @@ postgres:
       memory: "128Mi"
       cpu: "500m"
   volume:
-    mounted: false
+    mounted: true
     claim: 1Gi
   replicaCount: 1
   env:
     postgres:
-      db: sprintometer
-      user: sprintometer
-      password: sprintometer
+      db: postgres
+      user: postgres
+      password: postgres
 
